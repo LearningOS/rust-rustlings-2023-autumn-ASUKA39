@@ -13,15 +13,13 @@
 struct Package {
     sender_country: String,
     recipient_country: String,
-    weight_in_grams: u32,
+    weight_in_grams: i32,
 }
 
 impl Package {
-    fn new(sender_country: String, recipient_country: String, weight_in_grams: u32) -> Package {
-        if weight_in_grams < 10 {
-            // This is not how you should handle errors in Rust,
-            // but we will learn about error handling later.
-            panic!("Can not ship a package with weight below 10 grams.")
+    fn new(sender_country: String, recipient_country: String, weight_in_grams: i32) -> Package {
+        if weight_in_grams <= 0 {
+            panic!("Can not ship a weightless package.")
         } else {
             Package {
                 sender_country,
@@ -35,7 +33,7 @@ impl Package {
         // Something goes here...
     }
 
-    fn get_fees(&self, cents_per_gram: u32) -> ??? {
+    fn get_fees(&self, cents_per_gram: i32) -> ??? {
         // Something goes here...
     }
 }
@@ -50,7 +48,7 @@ mod tests {
         let sender_country = String::from("Spain");
         let recipient_country = String::from("Austria");
 
-        Package::new(sender_country, recipient_country, 5);
+        Package::new(sender_country, recipient_country, -2210);
     }
 
     #[test]

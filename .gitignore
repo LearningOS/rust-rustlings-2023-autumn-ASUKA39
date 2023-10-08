@@ -15,4 +15,4 @@ public/
 
 # Local Netlify folder
 .netlify
-# rustlings/*
+rustlings/*
